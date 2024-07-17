@@ -56,11 +56,14 @@ const SignUp = () => {
         password.match(passwordRegex) !== null &&
         username.match(usernameRegex) !== null
       ) {
-        await axios.post("http://localhost:8080/api/v1/users/register", {
-          username,
-          email,
-          password
-        });
+        await axios.post(
+          "https://lending-app-api.vercel.app/api/v1/users/register",
+          {
+            username,
+            email,
+            password
+          }
+        );
         login(e, { email, password });
       } else {
         setInvalidLogin(

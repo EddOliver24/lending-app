@@ -18,10 +18,13 @@ const useLogin = () => {
       e.preventDefault();
       const {
         data: { data }
-      } = await axios.post("http://localhost:8080/api/v1/users/login", {
-        email: userCredentials.email,
-        password: userCredentials.password
-      });
+      } = await axios.post(
+        "https://lending-app-api.vercel.app/api/v1/users/login",
+        {
+          email: userCredentials.email,
+          password: userCredentials.password
+        }
+      );
       setInvalidLogin("");
       console.log(data);
       setIsLoggedIn(true);

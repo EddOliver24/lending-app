@@ -93,7 +93,7 @@ const Enrollment = () => {
         data.append("borrower-image", imageFile);
 
         const newBorrower = await axios.post(
-          "http://localhost:8080/api/v1/borrowers/register",
+          "https://lending-app-api.vercel.app/api/v1/borrowers/register",
           data,
           { headers: { Authorization: `Bearer ${accessToken}` } }
         );

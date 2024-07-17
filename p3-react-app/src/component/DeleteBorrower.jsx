@@ -11,26 +11,18 @@ const DeleteBorrower = ({ borrowerId, imageFilename }) => {
     e.preventDefault();
     (async () => {
       await axios.delete(
-        `http://localhost:8080/api/v1/borrowers/${borrowerId}/${
+        `https://lending-app-api.vercel.app/api/v1/borrowers/${borrowerId}/${
           imageFilename.split("/")[1]
         }`
       );
       dispatch({ type: "BORROWERS_DELETE", payload: borrowerId });
-      //fetch data
-      //   const {
-      //     data: { data },
-      //   } = await axios.get("http://localhost:8080/api/v1/borrowers");
-      //   localStorage.setItem("borrowers", JSON.stringify(data));
-      //   dispatch({ type: "BORROWERS_LIST", payload: data });
     })();
 
-    // dispatch({ type: "BORROWERS_DELETE", payload: borrowerId });
     navigate("/borrowers");
   };
 
   return (
     <div className="info-input">
-      {/* <button className="info-submit" onClick={() => navigate("/enrollment")}></button> */}
       <button className="info-submit" onClick={(e) => handleSubmit(e)}>
         Delete Borrower
       </button>

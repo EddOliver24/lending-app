@@ -109,7 +109,7 @@ const BorrowerById = () => {
       const {
         data: { data }
       } = await axios.get(
-        `http://localhost:8080/api/v1/borrowers/${borrowerId}`
+        `https://lending-app-api.vercel.app/api/v1/borrowers/${borrowerId}`
       );
       setBorrower(data.borrower);
       setBorrowerDummy(
@@ -133,7 +133,9 @@ const BorrowerById = () => {
 
   const handleDeleteLoan = async (loanId) => {
     try {
-      await axios.delete(`http://localhost:8080/api/v1/loans/${loanId}`);
+      await axios.delete(
+        `https://lending-app-api.vercel.app/api/v1/loans/${loanId}`
+      );
       dispatch({ type: "LOANS_DELETE", payload: loanId });
     } catch (error) {
       console.error("Failed to delete loan:", error);
@@ -142,7 +144,9 @@ const BorrowerById = () => {
 
   const handleDeletePayment = async (paymentId) => {
     try {
-      await axios.delete(`http://localhost:8080/api/v1/payments/${paymentId}`);
+      await axios.delete(
+        `https://lending-app-api.vercel.app/api/v1/payments/${paymentId}`
+      );
       dispatchPayments({ type: "PAYMENTS_DELETE", payload: paymentId });
     } catch (error) {
       console.error("Failed to delete payment:", error);
@@ -209,19 +213,10 @@ const BorrowerById = () => {
           editedData.append("borrower-image", imageFile);
         }
         const editedBorrower = await axios.put(
-          `http://localhost:8080/api/v1/borrowers/${borrowerId}`,
+          `https://lending-app-api.vercel.app/api/v1/borrowers/${borrowerId}`,
           editedData
         );
-        // const newBorrower = await axios.post(
-        //   "http://localhost:8080/api/v1/borrowers/register",
-        //   data,
-        //   { headers: { Authorization: `Bearer ${accessToken}` } }
-        // );
-        // // console.log(newBorrower);
-        // // setBorrowers([newBorrower, ...borrowers]);
         dispatch({ type: "BORROWER_EDIT", payload: editedBorrower });
-        // displayPopUp();
-        // setError("");
         setError("");
         setFnameError("");
         setMnameError("");
@@ -241,7 +236,7 @@ const BorrowerById = () => {
     try {
       e.preventDefault();
       const newLoan = await axios.post(
-        "http://localhost:8080/api/v1/loans/apply",
+        "https://lending-app-api.vercel.app/api/v1/loans/apply",
         loan
       );
       dispatch({ type: "LOANS_ADD", payload: newLoan });
@@ -265,7 +260,7 @@ const BorrowerById = () => {
     try {
       e.preventDefault();
       const newPayment = await axios.post(
-        "http://localhost:8080/api/v1/payments/pay",
+        "https://lending-app-api.vercel.app/api/v1/payments/pay",
         payment
       );
       dispatchPayments({ type: "PAYMENTS_ADD", payload: newPayment });

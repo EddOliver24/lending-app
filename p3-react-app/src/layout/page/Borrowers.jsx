@@ -24,7 +24,9 @@ const Borrowers = () => {
     (async () => {
       const {
         data: { data }
-      } = await axios.get("http://localhost:8080/api/v1/borrowers");
+      } = await axios.get(
+        "https://lending-app-api.vercel.app/api/v1/borrowers"
+      );
 
       localStorage.setItem("borrowers", JSON.stringify(data));
       dispatch({ type: "BORROWERS_LIST", payload: data });
